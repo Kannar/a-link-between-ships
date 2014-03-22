@@ -27,12 +27,23 @@ var Player = function(params)
     this.update = function()
     {
         this.majPos();
+<<<<<<< HEAD
 
       //  this.pad.update();
+=======
+		this.padMove();
+        // this.pad.update();
+>>>>>>> origin/Gabin
 
         this.render();
     }
-
+	this.padMove = function()
+	{
+		if (this.pad.axes[0] > 0.2 || this.pad.axes[0] < -0.2)
+            this.x += this.pad.axes[0] * this.speedMax;
+        if (this.pad.axes[1] > 0.2 || this.pad.axes[1] < -0.2) 
+            this.y += this.pad.axes[1] * this.speedMax;
+	}
     this.render = function()
     {
         mainContext.fillStyle = "rgb(25, 255, 25)";

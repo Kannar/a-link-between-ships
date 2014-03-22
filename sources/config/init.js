@@ -23,6 +23,8 @@ function mainInit()
     var player1=new Player({x:50, y:150, src:"sources/media/GladiatorP1.png"});
     var player2=new Player({x:150, y:150, src:"sources/media/GladiatorP2.png"});
     var link = new Link(player1,player2);
+	var gamepadSupportAvailable = !!navigator.webkitGetGamepads || !!navigator.webkitGamepads;
+	var gamepadManager = new GamepadManager();
     gameobjects[0].push(player1,player2,link);
     mainloop();
 }
@@ -32,6 +34,7 @@ function mainInit()
 *******************************/
 function canvasInit()
 {
+	gamepadManager = new GamepadManager();
     mainCanvas  = document.getElementById("mainCanvas");
     mainContext = mainCanvas.getContext("2d");
     mainCanvas.width  = 1024;
