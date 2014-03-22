@@ -1,0 +1,14 @@
+body{
+    background-color: black;
+}
+
+#container{
+    position: absolute;
+    margin-left: auto;
+    margin-top: auto;
+}
+
+#mainCanvas{
+    position: relative;
+    border: 1px solid white;
+}
