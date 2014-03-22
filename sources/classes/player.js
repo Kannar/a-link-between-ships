@@ -17,9 +17,18 @@ var Player = function(params)
     this.vx       = 0;
     this.vy       = 0;
 
+    //Shoot
+    this.shootSpeed = params.shootSpeed;
+    this.framesSinceLastShoot = 0;
+
+    //Gamepad
+    this.pad;
+
     this.update = function()
     {
         this.majPos();
+
+        this.pad.update();
 
         this.render();
     }
@@ -89,5 +98,21 @@ var Player = function(params)
     /********************************
     *   Shoot
     ********************************/
+    this.shoot = function(coeff)
+    {   
+        if(this.framesSinceLastShoot/60 == this.shootSpeed)
+        {
+            var _params = bulletPlayers_data;
+            _params.x = this.x;
+            _params.y = this.y;
+            _params.vx = bulletPlayers_data.speed*coeff.x;
+            _params.vy = bulletPlayers_data.speed*coeff.y;
 
+            gameobjects[1].push(new Bullet(_params));
+
+            this.framesSinceLastShoot = 0;
+        }
+        else
+            this.framesSinceLastShoot = this.framesSinceLastShoot + 1;
+    }
 }
