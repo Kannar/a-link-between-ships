@@ -1,1 +1,7 @@
-var state = "INIT";
+var state = "IN_GAME";
+
+var gameobjects = [
+    [], //Allies
+    [], //Ennemies
+    []  //Neutre
+];
