@@ -52,3 +52,6 @@ Link.prototype.manager = function (carac,coef){
 			break;
 	}
 }
+Link.prototype.warning = function(){
+	console.log("startCountdown");
+}
