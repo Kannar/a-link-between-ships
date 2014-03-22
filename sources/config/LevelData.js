@@ -4,6 +4,8 @@ var levelData =
 		{
 			name       : Level 1,
 			data       : 0,
+			width      : 600,
+			height     : 600,
 			blockTable : {},
 			
 		},
@@ -11,6 +13,8 @@ var levelData =
 		{
 			name       : Level 2,
 			data       : 1,
+			width      : 600,
+			height     : 600,
 			blockTable : {
 							block : {
 										x      : 500,
@@ -25,6 +29,8 @@ var levelData =
 		{
 			name       : Level 3,
 			data       : 2,
+			width      : 600,
+			height     : 600,
 			blockTable : {
 							block : {
 										x      : ,
