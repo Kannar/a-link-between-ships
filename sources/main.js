@@ -3,7 +3,7 @@
 *****************************/
 function mainloop()
 {
-    if(state == "INIT")
+    if(state == "LOADING")
     {
         loading();
         return;
@@ -18,7 +18,6 @@ function mainloop()
         pauseloop();
         return;
     }
-
 
     requestAnimFrame(mainloop);
 }
@@ -44,5 +43,5 @@ function pauseloop()
 ****************************/
 function loading()
 {
-    
+
 }
