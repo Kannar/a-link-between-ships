@@ -28,6 +28,8 @@ function gameloop()
 /******************************/
 
     mainContext.clearRect(0, 0, 1024, 750);
+	
+	gamepadManager.update();
 
     for(var i=0; i<gameobjects.length; i=i+1)
     {

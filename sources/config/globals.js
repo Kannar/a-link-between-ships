@@ -6,4 +6,9 @@ var gameobjects = [
     [], //Ennemies
     [], //Annemies Bullets
     []  //Neutre
+	
+
 ];
+
+var	gamepads = [];
+var gamepadSupportAvailable = !!navigator.webkitGetGamepads || !!navigator.webkitGamepads;
