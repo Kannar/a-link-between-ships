@@ -4,11 +4,11 @@
 var Player = function(params)
 {
     //Basique
-    this.x        = params.x;
-    this.y        = params.y;
-    this.width    = params.width;
-    this.height   = params.height;
-    this.id       = params.id;
+    this.x        = params.x ||0;
+    this.y        = params.y || 0;
+    this.width    = params.width || 20;
+    this.height   = params.height || 20;
+    this.id       = params.id || "player"+(Math.random()*255>>0);
     
     //Mouvement
     this.speedAcc = params.speedAcc || 2;

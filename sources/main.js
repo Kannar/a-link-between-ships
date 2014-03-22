@@ -33,7 +33,11 @@ function gameloop()
     {
         for(var j=0; j< gameobjects[i].length; j=j+1)
         {
-            gameobjects[i][j].update();
+            if(gameobjects[i][j].update)
+                gameobjects[i][j].update();
+            if (gameobjects[i][j].draw) {
+                //gameobjects[i][j].draw();
+            };
         }
     }
 

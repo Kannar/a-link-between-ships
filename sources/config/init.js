@@ -20,7 +20,10 @@ function mainInit()
 {
     canvasInit();
     setStats();
-
+    var player1=new Player({x:50,y:150});
+    var player2=new Player({x:150,y:150});
+    var link = new Link(player1,player2);
+    gameobjects[0].push(player1,player2,link);
     mainloop();
 }
 
@@ -31,7 +34,6 @@ function canvasInit()
 {
     mainCanvas  = document.getElementById("mainCanvas");
     mainContext = mainCanvas.getContext("2d");
-
     mainCanvas.width  = 1024;
     mainCanvas.height = 750;
 }

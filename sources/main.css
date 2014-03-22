@@ -3,9 +3,9 @@ body{
 }
 
 #container{
-    position: absolute;
-    margin-left: auto;
-    margin-top: auto;
+    position: relative;
+    margin: auto;
+    width:1024px;
 }
 
 #mainCanvas{
