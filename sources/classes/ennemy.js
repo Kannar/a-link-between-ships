@@ -1,3 +1,9 @@
+<<<<<<< HEAD
+=======
+/*********************************
+*   Class Ennemy
+*********************************/
+>>>>>>> origin/Kannar
 var Ennemy = function(params)
 {
     this.x = params.x || 555;
@@ -12,8 +18,17 @@ var Ennemy = function(params)
 
     this.angle = 0;
 
+<<<<<<< HEAD
     this.update = function()
     {
+=======
+    this.toDestroy = false;
+
+    this.update = function()
+    {
+        this.comport();
+
+>>>>>>> origin/Kannar
         this.majPos();
 
         this.render();
@@ -32,4 +47,35 @@ var Ennemy = function(params)
         this.x = this.x + Math.cos(this.angle) * this.speed;
         this.y = this.y - Math.sin(this.angle) * this.speed;
     }
+<<<<<<< HEAD
+=======
+
+    this.comport = function()   //Fonction servant à set un comportement spécial si besoin
+    {
+
+    } 
+}
+
+/********************************
+*   Ajout de comportements
+********************************/
+//Ennemy qui split
+function addSplitComport(object)
+{
+    object.focus = m_midPts(gameobjects[0][0], gameobjects[0][1]);
+    object.distMin = 100;
+
+    object.comport = function()
+    {
+        object.focus = m_midPts(gameobjects[0][0], gameobjects[0][1]);
+
+        if(m_dist(object, object.focus) <= object.distMin)
+        {
+            gameobjects[2].push(new Ennemy({x: this.x, y: this.y, focus: gameobjects[0][0]}));
+            gameobjects[2].push(new Ennemy({x: this.x, y: this.y, focus: gameobjects[0][1]}));
+
+            object.toDestroy = true;
+        }
+    }
+>>>>>>> origin/Kannar
 }
