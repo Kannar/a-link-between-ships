@@ -6,10 +6,12 @@ var Player = function(params)
     //Basique
     this.x        = params.x ||0;
     this.y        = params.y || 0;
-    this.width    = params.width || 20;
-    this.height   = params.height || 20;
+    this.width    = params.width || 40;
+    this.height   = params.height || 67;
     this.id       = params.id || "player"+(Math.random()*255>>0);
-    
+    this.img      = new Image();
+    this.img.src  = params.src;
+
     //Mouvement
     this.speedAcc = params.speedAcc || 2;
     this.speedMax = params.speedMax || 10;
@@ -28,7 +30,7 @@ var Player = function(params)
     {
         this.majPos();
 
-        this.pad.update();
+      //  this.pad.update();
 
         this.render();
     }
@@ -36,7 +38,7 @@ var Player = function(params)
     this.render = function()
     {
         mainContext.fillStyle = "rgb(25, 255, 25)";
-        mainContext.fillRect(this.x, this.y, this.width, this.height);
+        mainContext.drawImage(this.img,this.x, this.y, this.width, this.height);
     }
 
     /********************************
