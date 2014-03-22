@@ -1,7 +1,8 @@
 /******************************
 *   Movable
+*       (nécessite une position en x et y)
 ******************************/
-function addMovableCapabilities()
+function addMovableCapabilities(object, params)
 {
     
 }

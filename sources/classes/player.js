@@ -3,9 +3,11 @@
 *************************************/
 var Player = function(params)
 {
-    this.pos = params.pos;  //{x, y}
+    this.x = params.x;
+    this.y = params.y;
 
-    this.size = params.size;    //{width, height}
+    this.width = params.width;
+    this.height = params.height;
 
     this.id = params.id;    //Player 1 ou 2
 }
