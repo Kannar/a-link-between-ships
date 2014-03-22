@@ -34,3 +34,28 @@ function m_compareN(a, b)
     else
         return b;
 }
+
+//Retourne la moyenne entre plusieurs chiffres
+function m_average(table)   //table -> tableau contenant les chiffres
+{
+    var _sum = 0;
+
+    for(var i = 0; i < table.length; i=i+1)
+    {
+        _sum = _sum + table[i];
+    }
+
+    return _sum/table.length;
+}
+
+//Retourn l'ddition de 2 vecteurs
+function m_addVec(vA, vB) //objets x, y (ex: {x: 2, y: 1})
+{
+    return {"x" : vA.x + vB.x, "y" : vA.y + vB.y};
+}
+
+//Retourne le module d'un vecteur
+function m_magVec(v)    //objet x, y
+{
+    return Math.sqrt(v.x*v.x + v.y*v.y);
+}

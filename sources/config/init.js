@@ -19,6 +19,7 @@ window.onload = mainInit;
 function mainInit()
 {
     canvasInit();
+    setStats();
 
     gameloop();
 }
