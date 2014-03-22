@@ -21,7 +21,7 @@ function mainInit()
     canvasInit();
     setStats();
 
-    gameloop();
+    mainloop();
 }
 
 /*******************************

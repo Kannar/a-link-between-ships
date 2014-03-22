@@ -3,14 +3,14 @@
 *************************************/
 var Player = function(params)
 {
+    //Basique
     this.x        = params.x;
     this.y        = params.y;
-    
     this.width    = params.width;
     this.height   = params.height;
+    this.id       = params.id;
     
-    this.id       = params.id;    //Player 1 ou 2
-    
+    //Mouvement
     this.speedAcc = params.speedAcc || 2;
     this.speedMax = params.speedMax || 10;
     this.speedSlo = params.speedSlo || 1;
@@ -26,7 +26,7 @@ var Player = function(params)
 
     this.render = function()
     {
-        mainContext.fillStyle = "rgb(255, 255, 255)";
+        mainContext.fillStyle = "rgb(25, 255, 25)";
         mainContext.fillRect(this.x, this.y, this.width, this.height);
     }
 
@@ -85,4 +85,9 @@ var Player = function(params)
                 this.vy = 0;
         }
     }
+    /*******************************/
+    /********************************
+    *   Shoot
+    ********************************/
+
 }

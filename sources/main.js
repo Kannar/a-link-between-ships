@@ -6,17 +6,14 @@ function mainloop()
     if(state == "LOADING")
     {
         loading();
-        return;
     }
     if(state == "IN_GAME")
     {
         gameloop();
-        return;
     }
     if(state == "PAUSE")
     {
         pauseloop();
-        return;
     }
 
     requestAnimFrame(mainloop);
@@ -31,6 +28,11 @@ function gameloop()
 /******************************/
 
     mainContext.clearRect(0, 0, 1024, 750);
+
+    for(var i=0; i<gameobjects.length; i=i+1)
+    {
+        gameobjects[i].update();
+    }
 
 /******************************/
     stats.end();
