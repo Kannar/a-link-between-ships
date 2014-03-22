@@ -31,7 +31,10 @@ function gameloop()
 
     for(var i=0; i<gameobjects.length; i=i+1)
     {
-        gameobjects[i].update();
+        for(var j=0; j< gameobjects[i].length; j=j+1)
+        {
+            gameobjects[i][j].update();
+        }
     }
 
 /******************************/
