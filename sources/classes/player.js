@@ -28,13 +28,10 @@ var Player = function(params)
     this.update = function()
     {
         this.majPos();
-<<<<<<< HEAD
 
       //  this.pad.update();
-=======
 		this.padMove();
         // this.pad.update();
->>>>>>> origin/Gabin
 
         this.render();
     }
