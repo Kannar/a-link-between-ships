@@ -1,24 +1,45 @@
 var Link = function(player1,player2){
-	this.startPos;
-	this.endPos;
-	this.color="rgb(255,0,0)";
+	this.startPos = {x:player1.x,y:player1.y};
+	this.endPos   =	{x:player2.x,y:player2.y};
+	this.player1=player1;
+	this.player2=player2;
+	this.color="rgb(0,0,255)";
 	this.life=5;
 	this.ammo=1000;
+	this.distanceMin=100;
 }
-Link.prototype.draw = function(){
+Link.prototype.render = function(){
 	mainContext.strokeStyle=this.color;
-	mainContext.beginPath(this.startPos.x,this.startPos.y)
+	mainContext.beginPath();
+	mainContext.moveTo(this.startPos.x,this.startPos.y);
 	mainContext.lineTo(this.endPos.x,this.endPos.y);
 	mainContext.stroke();
+	mainContext.closePath();
+}
+Link.prototype.update = function(){
+	this.checkDistance()
+	this.render();
 }
 Link.prototype.checkDistance = function()
 {
-	this.startPos = {x:player1.x,y:player1.y};
-	this.endPos   =	{x:player1.x,y:player1.y};
+	this.startPos = {x:this.player1.x+this.player1.width/2,y:this.player1.y+this.player1.height/2};
+	this.endPos   =	{x:this.player2.x+this.player2.width/2,y:this.player2.y+this.player2.height/2};
 	var distance=m_dist(this.startPos,this.endPos);
-	if(distancethis.distanceMin){
-
+	if(distance>=this.distanceMin && distance<=this.distanceMin+150 ){
+		this.color="rgb(0,255,255)";
 	}
+	else if(distance>=this.distanceMin+150 && distance<=this.distanceMin+300 ){
+		this.color="rgb(0,255,0)";
+	}
+
+	else if(distance>=this.distanceMin+300 && distance<=this.distanceMin+450 ){
+		this.color="rgb(255,163,25)";
+	}
+	else if(distance>=this.distanceMin+450 && distance<=this.distanceMin+600 ){
+		this.color="rgb(255,0,0)";
+		this.warning();
+	}
+	//console.log(distance);
 }
 Link.prototype.manager = function (carac,coef){
 	var caracLower = carac.toLowerCase();
