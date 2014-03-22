@@ -1,9 +1,6 @@
-<<<<<<< HEAD
-=======
 /*********************************
 *   Class Ennemy
 *********************************/
->>>>>>> origin/Kannar
 var Ennemy = function(params)
 {
     this.x = params.x || 555;
@@ -18,17 +15,12 @@ var Ennemy = function(params)
 
     this.angle = 0;
 
-<<<<<<< HEAD
-    this.update = function()
-    {
-=======
     this.toDestroy = false;
 
     this.update = function()
     {
         this.comport();
 
->>>>>>> origin/Kannar
         this.majPos();
 
         this.render();
@@ -47,8 +39,6 @@ var Ennemy = function(params)
         this.x = this.x + Math.cos(this.angle) * this.speed;
         this.y = this.y - Math.sin(this.angle) * this.speed;
     }
-<<<<<<< HEAD
-=======
 
     this.comport = function()   //Fonction servant à set un comportement spécial si besoin
     {
@@ -77,5 +67,4 @@ function addSplitComport(object)
             object.toDestroy = true;
         }
     }
->>>>>>> origin/Kannar
 }
