@@ -11,9 +11,9 @@ var Player = function(params)
     this.id       = params.id || "player"+(Math.random()*255>>0);
     
     //Mouvement
-    this.speedAcc = params.speedAcc || 2;
-    this.speedMax = params.speedMax || 10;
-    this.speedSlo = params.speedSlo || 1;
+    this.speedAcc = params.speedAcc || 0.1;
+    this.speedMax = params.speedMax || 2;
+    this.speedSlo = params.speedSlo || 0.1;
     this.vx       = 0;
     this.vy       = 0;
     this.img      = new Image();
@@ -29,7 +29,8 @@ var Player = function(params)
     {
         this.majPos();
 
-      //  this.pad.update();
+        if(this.pad)
+            this.moveWithPad();
 
         this.render();
     }
@@ -43,6 +44,29 @@ var Player = function(params)
     /********************************
     *   Mouvement
     ********************************/
+    //Bouger grace au pad
+    this.moveWithPad = function()
+    {
+        var _onMove = false;
+
+        if(this.pad.axes[0] < -0.25 || this.pad.axes[0] > 0.25)   //Axe horizontal
+        {
+            this.accelerate({x: this.pad.axes[0], y: 0});
+
+            _onMove = true;
+        }
+
+        if(this.pad.axes[1] < -0.25 || this.pad.axes[1] > 0.25)
+        {
+            this.accelerate({x: 0, y: this.pad.axes[1]});
+
+            _onMove = true;
+        }
+
+        if(!_onMove)
+            this.slowDown();
+    }
+
     //Màj de la position de l'objet
     this.majPos = function()
     {
@@ -53,7 +77,7 @@ var Player = function(params)
     //Acceleration
     this.accelerate = function(coeff)  //Coeff -> {x,y} valeure entre 0 et 1
     {
-        if(m_average([this.vx, this.vy]) < this.speedMax)
+        if(Math.abs(this.vx) < this.speedMax && Math.abs(this.vy) < this.speedMax)
         {
             this.vx = this.vx + (this.speedAcc*coeff.x);
             this.vy = this.vy + (this.speedAcc*coeff.y);

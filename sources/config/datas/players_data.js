@@ -4,7 +4,7 @@ var players1_data = {
     width: 35,
     height: 35,
     id: 1,
-    speedAcc: 1,
-    speedMax: 7,
-    speedSlo: 0.5
+    speedAcc: 0.1,
+    speedMax: 2,
+    speedSlo: 0.1
 };
