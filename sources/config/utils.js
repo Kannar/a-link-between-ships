@@ -55,7 +55,13 @@ function m_addVec(vA, vB) //objets x, y (ex: {x: 2, y: 1})
 }
 
 //Retourne le module d'un vecteur
-function m_magVec(v)    //objet x, y
+function m_modVec(v)    //objet x, y
 {
     return Math.sqrt(v.x*v.x + v.y*v.y);
+}
+
+//Retourne la coordonnée {x, y} du milieu entre 2 points
+function m_midPts(a, b) //{x, y}
+{
+    return {x: (a.x + b.x)/2, y: (a.y + b.y)/2};
 }
