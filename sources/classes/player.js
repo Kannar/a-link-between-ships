@@ -28,7 +28,7 @@ var Player = function(params)
     {
         this.majPos();
 
-        this.pad.update();
+        // this.pad.update();
 
         this.render();
     }
