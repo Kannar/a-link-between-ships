@@ -32,6 +32,7 @@ var Player = function(params)
     this.update = function()
     {
         this.majPos();
+
         if(this.pad && !this.disableMoove)
         {
             this.moveWithPad();
@@ -83,7 +84,7 @@ var Player = function(params)
             this.onMoveBot=false;
             this.onMoveTop=true;
         }
-   // console.log(  this.onMoveLeft,this.onMoveRight,this.onMoveTop,this.onMoveBot);
+   // //console.log(  this.onMoveLeft,this.onMoveRight,this.onMoveTop,this.onMoveBot);
 
         if(this.onMoveLeft)   //Axe horizontal
         {
@@ -157,7 +158,7 @@ var Player = function(params)
             this.vx=0;
             this.onMoveLeft=false;
             this.onMoveRight=false;
-           // console.log(this.vx)
+           // //console.log(this.vx)
         }
         //En Y
         if(this.vy < -0.5 || this.vy > 0.5)
@@ -171,9 +172,9 @@ var Player = function(params)
             this.vy=0;
              this.onMoveBot=false;
             this.onMoveTop=false;
-        console.log("vitesse Y :"+this.vy)
+        //console.log("vitesse Y :"+this.vy)
         }
-       // console.log("vitesse X : "+this.vx)
+       // //console.log("vitesse X : "+this.vx)
     }
     /*******************************/
     /********************************
@@ -184,7 +185,7 @@ var Player = function(params)
 
         if(this.framesSinceLastShoot/60 >= this.shootSpeed && !this.shootDisable)
         {
-            console.log("canshoot");
+            //console.log("canshoot");
             var _params = bulletPlayers_data;
             _params.x = this.x + this.width/2 - bulletPlayers_data.width/2;
             _params.y = this.y + this.height/2 - bulletPlayers_data.height/2;
@@ -193,7 +194,7 @@ var Player = function(params)
 
             gameobjects[1].push(new Bullet(_params));
 
-            console.log(coeff);
+            //console.log(coeff);
 
             this.framesSinceLastShoot = 0;
         }

@@ -30,9 +30,7 @@ function gameloop()
     mainContext.clearRect(0, 0, 1024, 750);
 	
 	gamepadManager.update();
-    collisionManager(gameobjects[0],gameobjects[4])
-    collisionManager(gameobjects[0],gameobjects[2])
-    collisionManager(gameobjects[1],gameobjects[2])
+
     for(var i=0; i<gameobjects.length; i=i+1)
     {
         for(var j=0; j< gameobjects[i].length; j=j+1)
@@ -44,6 +42,9 @@ function gameloop()
             };
         }
     }
+    collisionManager(gameobjects[0],gameobjects[4])
+    collisionManager(gameobjects[0],gameobjects[2])
+    collisionManager(gameobjects[1],gameobjects[2])
 	
 	for(i=0; i < explosionTable.length; i++)
 	{
@@ -53,7 +54,6 @@ function gameloop()
 			explosionTable.splice(i,1);
 		}
 	}
-	console.log(understate);
 	if(understate == "IN_WAVE")
 	{
 		if(gameobjects[2].length == 0)

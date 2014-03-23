@@ -4,9 +4,10 @@ var Link = function(player1,player2){
 	this.player1=player1;
 	this.player2=player2;
 	this.color="rgb(0,0,255)";
-	this.life=5;
+	this.life=3;
 	this.ammo=1000;
-	this.distanceMin=100;
+	this.distanceMin=50;
+	this.timeD;
 }
 Link.prototype.render = function(){
 	mainContext.strokeStyle=this.color;
@@ -44,6 +45,7 @@ Link.prototype.checkDistance = function()
 
 		this.player1.shootDisable=false;
 		this.player2.shootDisable=false;
+		window.clearTimeout(this.timed);
 	}
 	else if(distance>=this.distanceMin+450 && distance<=this.distanceMin+600 ){
 		this.color="rgb(255,0,0)";
@@ -51,7 +53,7 @@ Link.prototype.checkDistance = function()
 		this.player2.shootDisable=false;
 		this.warning();
 	}
-	//console.log(distance);
+	////console.log(distance);
 }
 Link.prototype.manager = function (carac,coef){
 	var caracLower = carac.toLowerCase();
@@ -65,10 +67,23 @@ Link.prototype.manager = function (carac,coef){
 	}
 }
 Link.prototype.warning = function(){
-	console.log("startCountdown");
+	//console.log("startCountdown");
+	var _this=this;
+	this.timeD=window.setTimeout(function(){
+		_this.player1.x=_this.player2.x;
+		_this.player1.y=_this.player2.y;
+	},2000);
 }
+
+var once = true;
+
 Link.prototype.death = function(){
 	if(this.life==0){
-		console.log("gameover")
+		if(once)
+		{
+			alert("GAME OVER");
+			once = false;
+		}
+		window.location.reload();
 	}
 }

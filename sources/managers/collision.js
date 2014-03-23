@@ -9,7 +9,6 @@ function collisionManager(gameobjects1,gameobjects2){
 					gameobjects2[j].death(j);
 				if(gameobjects1[i].death)
 					gameobjects1[i].death(i);
-				console.log("collision")
 			}	
 		};
 			

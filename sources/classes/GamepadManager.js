@@ -1,6 +1,6 @@
 var GamepadManager = function()
 {
-	this.maxPlayers = 1;
+	this.maxPlayers = 2;
 	this.connectedGamepads = 0;
 	this.registeredGamepads = 0;
 	
@@ -32,7 +32,7 @@ GamepadManager.prototype.checkGamepads = function()
 	{
 	   if (rawGamepads[i] != null && this.connectedGamepads != this.registeredGamepads)
 		{
-			console.log(rawGamepads);
+			//console.log(rawGamepads);
             gamepads.push(rawGamepads[i]);
 			this.registeredGamepads += 1;
 		}

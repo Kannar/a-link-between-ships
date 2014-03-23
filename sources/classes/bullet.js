@@ -4,7 +4,7 @@ var Bullet = function(params)
     this.y      = params.y;
     this.width  = params.width;
     this.height = params.height;
-    
+    this.id     = gameobjects[1].length;
     this.vx     = params.vx;
     this.vy     = params.vy;
 
@@ -29,4 +29,5 @@ var Bullet = function(params)
         this.x = this.x + this.vx;
         this.y = this.y + this.vy;
     }
+
 }
