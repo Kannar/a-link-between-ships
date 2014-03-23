@@ -22,7 +22,7 @@ var Player = function(params)
     this.img      = new Image();
     this.img.src  = params.src;
     //Shoot
-    this.shootSpeed = params.shootSpeed || 1;
+    this.shootSpeed = params.shootSpeed || 0.2;
     this.framesSinceLastShoot = 60;
     this.shootDisable=false;
     this.disableMoove=false;
@@ -52,32 +52,34 @@ var Player = function(params)
     *   Mouvement
     ********************************/
     //Bouger grace au pad
-    this.moveWithPad = function()
+     this.moveWithPad = function()
     {
         var _onMove = false;
 
         if(this.pad.axes[0] < -0.25)   //Axe horizontal
         {
-            _onMove = true;
+            onMove = true;
             this.onMoveLeft=true;
             this.onMoveRight=false;
         }
-        else if(this.pad.axes[0] > 0.25)   //Axe horizontal
+        if(this.pad.axes[0] > 0.25)   //Axe horizontal
         {
-            _onMove = true;
+            onMove = true;
+
             this.onMoveLeft=false;
             this.onMoveRight=true;
         }
 
         if(this.pad.axes[1] > 0.25)
         {
-            _onMove = true;
+            onMove = true;
+
             this.onMoveBot=true;
             this.onMoveTop=false;
         }
-        else if(this.pad.axes[1] < -0.25)
+        if(this.pad.axes[1] < -0.25)
         {
-            _onMove = true;
+
             this.onMoveBot=false;
             this.onMoveTop=true;
         }

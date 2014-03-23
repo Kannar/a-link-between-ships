@@ -11,6 +11,7 @@ var Link = function(player1,player2){
 Link.prototype.render = function(){
 	mainContext.strokeStyle=this.color;
 	mainContext.beginPath();
+	mainContext.lineWidth=4;
 	mainContext.moveTo(this.startPos.x,this.startPos.y);
 	mainContext.lineTo(this.endPos.x,this.endPos.y);
 	mainContext.stroke();
@@ -27,7 +28,7 @@ Link.prototype.checkDistance = function()
 	this.endPos   =	{x:this.player2.x+this.player2.width/2,y:this.player2.y+this.player2.height/2};
 	var distance=m_dist(this.startPos,this.endPos);
 	if(distance>=this.distanceMin && distance<=this.distanceMin+150 ){
-		this.color="rgb(0,255,255)";
+		this.color="rgb(255,0,0)";
 		this.player1.shootDisable=true;
 		this.player2.shootDisable=true;
 	}
@@ -68,6 +69,6 @@ Link.prototype.warning = function(){
 }
 Link.prototype.death = function(){
 	if(this.life==0){
-		alert("GameOver");
+		console.log("gameover")
 	}
 }
