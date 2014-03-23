@@ -32,6 +32,7 @@ var Player = function(params)
     this.update = function()
     {
         this.majPos();
+
         if(this.pad && !this.disableMoove)
         {
             this.moveWithPad();
