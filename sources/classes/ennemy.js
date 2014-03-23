@@ -58,16 +58,32 @@ var Ennemy = function(params)
 
     this.majPos = function()
     {
-        this.angle = m_angleDeg(this, this.focus);
+        // this.angle = m_angleDeg(this, this.focus);
 
-        this.x = this.x + Math.cos(this.angle) * this.speed;
-        this.y = this.y - Math.sin(this.angle) * this.speed;
+        // this.x = this.x + Math.cos(this.angle) * this.speed;
+        // this.y = this.y - Math.sin(this.angle) * this.speed;
+
+        //Maj pos x
+        if(this.focus.x < (this.x + this.speed))
+            this.x -= this.speed;
+        else if(this.focus.x > (this.x - this.speed))
+            this.x += this.speed;
+        //Maj pos y
+        if(this.focus.y < (this.y + this.speed))
+            this.y -= this.speed;
+        else if(this.focus.y > (this.focus.y - this.speed))
+            this.y += this.speed;
     }
 
     this.comport = function()   //Fonction servant à set un comportement spécial si besoin
     {
 
     } 
+
+    this.death = function(index)
+    {
+        gameobjects[2].splice(index, 1);
+    }
 }
 
 /********************************
