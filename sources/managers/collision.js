@@ -4,9 +4,9 @@ function collisionManager(gameobjects1,gameobjects2){
 			if((gameobjects2[j].x< gameobjects1[i].x+gameobjects1[i].width && gameobjects2[j].x> gameobjects1[i].x) && 
 				(gameobjects2[j].y<gameobjects1[i].y+gameobjects1[i].height && gameobjects2[j].y>gameobjects1[i].y )){
 				if(gameobjects2[j].death)
-					gameobjects2[j].death();
+					gameobjects2[j].death(j);
 				if(gameobjects1[i].death)
-					gameobjects1[i].death();
+					gameobjects1[i].death(i);
 				console.log("collide")
 			}
 		};
