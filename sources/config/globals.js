@@ -10,5 +10,6 @@ var gameobjects = [
 
 ];
 
+var gamepadManager;
 var	gamepads = [];
 var gamepadSupportAvailable = !!navigator.webkitGetGamepads || !!navigator.webkitGamepads;
