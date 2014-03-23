@@ -30,7 +30,8 @@ function gameloop()
     mainContext.clearRect(0, 0, 1024, 750);
 	
 	gamepadManager.update();
-
+    collisionManager(gameobjects[0],gameobjects[4])
+    collisionManager(gameobjects[0],gameobjects[2])
     for(var i=0; i<gameobjects.length; i=i+1)
     {
         for(var j=0; j< gameobjects[i].length; j=j+1)
