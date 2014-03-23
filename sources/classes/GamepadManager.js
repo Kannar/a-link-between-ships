@@ -32,7 +32,7 @@ GamepadManager.prototype.checkGamepads = function()
 	{
 	   if (rawGamepads[i] != null && this.connectedGamepads != this.registeredGamepads)
 		{
-			console.log(rawGamepads);
+			//console.log(rawGamepads);
             gamepads.push(rawGamepads[i]);
 			this.registeredGamepads += 1;
 		}

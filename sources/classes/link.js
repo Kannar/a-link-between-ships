@@ -51,7 +51,7 @@ Link.prototype.checkDistance = function()
 		this.player2.shootDisable=false;
 		this.warning();
 	}
-	//console.log(distance);
+	////console.log(distance);
 }
 Link.prototype.manager = function (carac,coef){
 	var caracLower = carac.toLowerCase();
@@ -65,10 +65,10 @@ Link.prototype.manager = function (carac,coef){
 	}
 }
 Link.prototype.warning = function(){
-	console.log("startCountdown");
+	//console.log("startCountdown");
 }
 Link.prototype.death = function(){
 	if(this.life==0){
-		console.log("gameover")
+		//console.log("gameover")
 	}
 }

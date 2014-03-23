@@ -8,7 +8,7 @@ function instantiateMap(){
 		obstacle.y=spawns[randomSpawn].y;
 		gameobjects[4].push(obstacle);
 		spawns.splice(randomSpawn,1);
-		console.log(spawns)
-		console.log(randomSpawn)
+		//console.log(spawns)
+		//console.log(randomSpawn)
 	};
 }
