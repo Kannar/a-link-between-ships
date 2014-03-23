@@ -31,7 +31,7 @@ var Player = function(params)
 
         if(this.pad)
             this.moveWithPad();
-
+        
         this.render();
     }
 
