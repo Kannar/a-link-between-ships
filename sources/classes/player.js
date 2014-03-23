@@ -33,6 +33,7 @@ var Player = function(params)
     {
         this.majPos();
         if(this.pad && !this.disableMoove)
+        {
             this.moveWithPad();
             this.shootWithPad();
         }
@@ -222,6 +223,7 @@ var Player = function(params)
         {
             this.shoot(_coeff);
         }
+    }
     this.death = function()
     {
 
