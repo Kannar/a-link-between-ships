@@ -11,7 +11,8 @@ var particleData =
 							B : 100,
 						  },
            lifetime     : 30,
-		   size         : 5
+		   size         : 5,
+		   alphaLoose   : 0.05
            
 				
 		},
@@ -19,13 +20,14 @@ var particleData =
 		{
 			type         : 1,
 		   name          : "explosion player",
-		   nbParticles   : 40,
+		   nbParticles   : 200,
 		   particleSpeed : 5,
            color         : {
-							R : 250,
-							G : 100,
-							B : 100,
+							R : 204,
+							G : 153,
+							B : 51,
 						   },
-           lifetime      : 180,
-		   size          : 10
+           lifetime      : 70,
+		   size          : 5,
+		   alphaLoose    : 0.01
 		}];
