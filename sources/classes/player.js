@@ -32,10 +32,6 @@ var Player = function(params)
         if(this.pad)
             this.moveWithPad();
 
-		this.padMove();
-        // this.pad.update();
-
-
         this.render();
     }
 
