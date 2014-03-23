@@ -36,7 +36,10 @@ GamepadManager.prototype.checkGamepads = function()
             gamepads.push(rawGamepads[i]);
 			this.registeredGamepads += 1;
 		}
-    }			
+    }
+
+    if(this.connectedGamepads < this.maxPlayers)
+    	console.error(this.maxPlayers - this.connectedGamepads + " pad(s	) is missing.")
 }
 
 GamepadManager.prototype.assignGamepads = function()
