@@ -9,20 +9,25 @@ var Ennemy = function(params)
     this.x = params.x;
     this.y = params.y;
 
-    this.width = params.width || 35;
-    this.height = params.height || 35;
-	
+    this.width = params.width || 40;
+    this.height = params.height || 60;
+	this.img = new Image();
 	this.spawnTimer = params.spawnTimer;
 	this.spawned = false;
 	this.type = params.type;
     
-	if(this.type == 0)
-	this.focus = gameobjects[0][0];
-	if(this.type == 1)
-	this.focus = gameobjects[0][1];
-	if(this.type == 2)
-	this.focus = m_midPts(gameobjects[0][0], gameobjects[0][1]);
-    
+	if(this.type == 0){
+	   this.focus = gameobjects[0][0];
+       this.img.src="sources/media/charge.png";
+    }
+	if(this.type == 1){
+	   this.focus = gameobjects[0][1];
+       this.img.src="sources/media/charge.png";
+    }
+	if(this.type == 2){
+	   this.focus = m_midPts(gameobjects[0][0], gameobjects[0][1]);
+       this.img.src="sources/media/slayer.png";
+    }
 	
 	this.speed = params.speed || 1;
 
@@ -53,7 +58,7 @@ var Ennemy = function(params)
     this.render = function()
     {
         mainContext.fillStyle = "rgb(255, 25, 25)";
-        mainContext.fillRect(this.x, this.y, this.width, this.height);
+        mainContext.drawImage(this.img,this.x, this.y, this.width, this.height);
     }
 
     this.majPos = function()
@@ -83,6 +88,9 @@ var Ennemy = function(params)
     this.death = function(index)
     {
         gameobjects[2].splice(index, 1);
+
+        var explosion = new Explosion(this.x+this.width/2,this.y+this.height/2, 0);
+        explosionTable.push(explosion);
     }
 }
 

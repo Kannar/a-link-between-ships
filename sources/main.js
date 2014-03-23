@@ -81,6 +81,15 @@ function gameloop()
 		}
 	}
 
+    for(var i = 0; i < gameobjects[1].length; i++)
+    {
+        if(gameobjects[1][i].toDestroy == true)
+        {
+            gameobjects[1].splice(i, 1);
+            i--;
+        }
+    }
+
 /******************************/
     stats.end();
 }

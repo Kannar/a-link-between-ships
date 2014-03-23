@@ -28,7 +28,7 @@ Link.prototype.checkDistance = function()
 	this.startPos = {x:this.player1.x+this.player1.width/2,y:this.player1.y+this.player1.height/2};
 	this.endPos   =	{x:this.player2.x+this.player2.width/2,y:this.player2.y+this.player2.height/2};
 	var distance=m_dist(this.startPos,this.endPos);
-	if(distance>=this.distanceMin && distance<=this.distanceMin+150 ){
+	if(distance>=this.distanceMin-30 && distance<=this.distanceMin+150 ){
 		this.color="rgb(255,0,0)";
 		this.player1.shootDisable=true;
 		this.player2.shootDisable=true;

@@ -22,7 +22,7 @@ var Player = function(params)
     this.img      = new Image();
     this.img.src  = params.src;
     //Shoot
-    this.shootSpeed = params.shootSpeed || 0.2;
+    this.shootSpeed = params.shootSpeed || 0.4;
     this.framesSinceLastShoot = 60;
     this.shootDisable=false;
     this.disableMoove=false;

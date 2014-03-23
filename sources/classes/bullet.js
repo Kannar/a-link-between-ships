@@ -16,6 +16,7 @@ var Bullet = function(params)
     {
         this.majPos();
         this.render();
+        this.checkDead();
     }
 
     this.render = function()
@@ -27,7 +28,15 @@ var Bullet = function(params)
     this.majPos = function()
     {
         this.x = this.x + this.vx;
-        this.y = this.y + this.vy;
+            this.y = this.y + this.vy;
+    }
+
+    this.checkDead = function()
+    {
+        if(this.x < -10 || this.y < -10 || this.x > 1034 || this.y > 760)
+        {
+            this.toDestroy = true;
+        }
     }
 
 }
