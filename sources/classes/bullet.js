@@ -8,6 +8,8 @@ var Bullet = function(params)
     this.vx     = params.vx;
     this.vy     = params.vy;
 
+    this.speed = params.speed || bulletPlayers_data.speed;
+
     this.toDestroy = false;
 
     this.update = function()

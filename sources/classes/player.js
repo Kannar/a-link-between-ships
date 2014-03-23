@@ -19,7 +19,7 @@ var Player = function(params)
     this.img      = new Image();
     this.img.src  = params.src;
     //Shoot
-    this.shootSpeed = params.shootSpeed;
+    this.shootSpeed = params.shootSpeed || 0.2;
     this.framesSinceLastShoot = 0;
 
     //Gamepad
@@ -29,8 +29,14 @@ var Player = function(params)
     {
         this.majPos();
         if(this.pad)
+        {
             this.moveWithPad();
+            this.shootWithPad();
+        }
+
         this.render();
+
+        this.framesSinceLastShoot = this.framesSinceLastShoot + 1;
     }
 
     this.render = function()
@@ -51,15 +57,11 @@ var Player = function(params)
         {
             this.accelerateX(this.pad.axes[0]);
 
-            console.log("left");
-
             _onMove = true;
         }
-        if(this.pad.axes[0] > 0.25)   //Axe horizontal
+        else if(this.pad.axes[0] > 0.25)   //Axe horizontal
         {
             this.accelerateX(this.pad.axes[0]);
-
-            console.log("right");
 
             _onMove = true;
         }
@@ -68,15 +70,11 @@ var Player = function(params)
         {
             this.accelerateY(this.pad.axes[1]);
 
-            console.log("bot");
-
             _onMove = true;
         }
-        if(this.pad.axes[1] < -0.25)
+        else if(this.pad.axes[1] < -0.25)
         {
             this.accelerateY(this.pad.axes[1]);
-
-            console.log("top");
 
             _onMove = true;
         }
@@ -149,19 +147,47 @@ var Player = function(params)
     ********************************/
     this.shoot = function(coeff)
     {   
-        if(this.framesSinceLastShoot/60 == this.shootSpeed)
+        if(this.framesSinceLastShoot/60 >= this.shootSpeed)
         {
             var _params = bulletPlayers_data;
-            _params.x = this.x;
-            _params.y = this.y;
+            _params.x = this.x + this.width/2 - bulletPlayers_data.width/2;
+            _params.y = this.y + this.height/2 - bulletPlayers_data.height/2;
             _params.vx = bulletPlayers_data.speed*coeff.x;
             _params.vy = bulletPlayers_data.speed*coeff.y;
 
             gameobjects[1].push(new Bullet(_params));
 
+            console.log(coeff);
+
             this.framesSinceLastShoot = 0;
         }
-        else
-            this.framesSinceLastShoot = this.framesSinceLastShoot + 1;
+    }
+
+    this.shootWithPad = function()
+    {
+        var _coeff = {x: 0, y: 0};
+
+        if(this.pad.axes[2] < -0.35)    //Horizontal (gauche)
+        {
+            _coeff.x = this.pad.axes[2];
+        }
+        else if(this.pad.axes[2] > 0.35)    //Horizontal (droite)
+        {
+            _coeff.x = this.pad.axes[2];
+        }
+
+        if(this.pad.axes[3] < -0.35)    //Vertical (droite)
+        {
+            _coeff.y = this.pad.axes[3];
+        }
+        else if(this.pad.axes[3] > 0.35)    //Vertical (gauche)
+        {
+            _coeff.y = this.pad.axes[3];
+        }
+
+        if((_coeff.x != 0) || (_coeff.y != 0))
+        {
+            this.shoot(_coeff);
+        }
     }
 }
