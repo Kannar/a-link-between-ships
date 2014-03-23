@@ -74,16 +74,8 @@ Link.prototype.warning = function(){
 		_this.player1.y=_this.player2.y;
 	},2000);
 }
-
-var once = true;
-
 Link.prototype.death = function(){
 	if(this.life==0){
-		if(once)
-		{
-			alert("GAME OVER");
-			once = false;
-		}
 		window.location.href="GameOver.html";
 	}
 }
