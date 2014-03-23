@@ -51,7 +51,7 @@ function gameloop()
 			explosionTable.splice(i,1);
 		}
 	}
-	console.log(understate);
+	
 	if(understate == "IN_WAVE")
 	{
 		if(gameobjects[2].length == 0)
@@ -78,6 +78,11 @@ function gameloop()
 			understate = "IN_WAVE";
 		}
 	}
+	mainContext.fillStyle = "rgba(255,255,255,0.8)";
+	mainContext.font = "Bold 30px Akachi";
+	var scoretext = "score : "+score;
+	var dim = mainContext.measureText(scoretext);
+	mainContext.fillText(scoretext, 10, mainCanvas.height-30);	
 
 /******************************/
     stats.end();

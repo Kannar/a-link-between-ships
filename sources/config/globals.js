@@ -9,6 +9,6 @@ var gameobjects = [
 	
 
 ];
-
+var score = 0;
 var	gamepads = [];
 var gamepadSupportAvailable = !!navigator.webkitGetGamepads || !!navigator.webkitGamepads;

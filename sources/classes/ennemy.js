@@ -15,14 +15,24 @@ var Ennemy = function(params)
 	this.spawnTimer = params.spawnTimer;
 	this.spawned = false;
 	this.type = params.type;
-    
+    this.image                      = new Image();
+	
+	
 	if(this.type == 0)
-	this.focus = gameobjects[0][0];
+	{
+		this.focus = gameobjects[0][0];
+		this.image.src = "sources/media/Slayer.png";
+	}
 	if(this.type == 1)
-	this.focus = gameobjects[0][1];
+	{
+		this.focus = gameobjects[0][1];
+		this.image.src = "sources/media/Slayer.png";
+	}
 	if(this.type == 2)
-	this.focus = m_midPts(gameobjects[0][0], gameobjects[0][1]);
-    
+	{
+		this.focus = m_midPts(gameobjects[0][0], gameobjects[0][1]);
+		this.image.src = "sources/media/Slice.png";;
+    }
 	
 	this.speed = params.speed || 1;
 
@@ -35,7 +45,6 @@ var Ennemy = function(params)
 		if(this.spawned == true)
 		{
 			this.comport();
-
 			this.majPos();
 
 			this.render();
@@ -48,12 +57,16 @@ var Ennemy = function(params)
 				this.spawned = true;
 			}
 		}
+		
     }
 
     this.render = function()
-    {
-        mainContext.fillStyle = "rgb(255, 25, 25)";
-        mainContext.fillRect(this.x, this.y, this.width, this.height);
+    {	
+		mainContext.drawImage(this.image, 0, 0, 233, 383, this.x-17.5, this.y-17.5, 35, 35);
+        /*mainContext.fillStyle = "rgb(255, 25, 25)";
+        mainContext.fillRect(this.x, this.y, this.width, this.height);*/
+		
+		
     }
 
     this.majPos = function()
