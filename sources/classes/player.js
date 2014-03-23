@@ -31,7 +31,7 @@ var Player = function(params)
 
       //  this.pad.update();
 
-		this.padMove();
+		//this.padMove();
         // this.pad.update();
 
 
