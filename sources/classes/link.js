@@ -84,6 +84,6 @@ Link.prototype.death = function(){
 			alert("GAME OVER");
 			once = false;
 		}
-		window.location.reload();
+		window.location.href="GameOver.html";
 	}
 }

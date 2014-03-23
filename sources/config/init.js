@@ -20,8 +20,8 @@ function mainInit()
 {
     canvasInit();
     setStats();
-    var player1=new Player({x:50, y:150, src:"sources/media/GladiatorP1.png"});
-    var player2=new Player({x:150, y:150, src:"sources/media/GladiatorP2.png"});
+    var player1=new Player({x:440, y:370, src:"sources/media/GladiatorP1.png"});
+    var player2=new Player({x:540, y:370, src:"sources/media/GladiatorP2.png"});
     var link = new Link(player1,player2);
 	var gamepadSupportAvailable = !!navigator.webkitGetGamepads || !!navigator.webkitGamepads;
 	var gamepadManager = new GamepadManager();

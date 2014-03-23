@@ -4,3 +4,7 @@ window.onload = function(){
    TweenLite.to($("#GameOver"), 1, {scale:1.5, opacity:1});
    GameOver.add(getParticlesAnimation(), "particles")
 }
+function redirection(){
+window.location.href="Home.html"
+
+}
