@@ -26,6 +26,7 @@ function mainInit()
 	var gamepadSupportAvailable = !!navigator.webkitGetGamepads || !!navigator.webkitGamepads;
 	var gamepadManager = new GamepadManager();
     gameobjects[0].push(player1,player2,link);
+    instantiateMap();
     mainloop();
 }
 
