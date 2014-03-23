@@ -1,17 +1,30 @@
 /*********************************
 *   Class Ennemy
+type : 0 = player 1 rusher
+       1 = player 2 rusher
+	   2 = link rusher
 *********************************/
 var Ennemy = function(params)
 {
-    this.x = params.x || 555;
-    this.y = params.y || 355;
+    this.x = params.x;
+    this.y = params.y;
 
     this.width = params.width || 35;
     this.height = params.height || 35;
-
-    this.focus = params.focus || console.error("Need a target");   //Minimum: {x, y}
-
-    this.speed = params.speed || 1;
+	
+	this.spawnTimer = params.spawnTimer;
+	this.spawned = false;
+	this.type = params.type;
+    
+	if(this.type == 0)
+	this.focus = gameobjects[0][0];
+	if(this.type == 1)
+	this.focus = gameobjects[0][1];
+	if(this.type == 2)
+	this.focus = m_midPts(gameobjects[0][0], gameobjects[0][1]);
+    
+	
+	this.speed = params.speed || 1;
 
     this.angle = 0;
 
@@ -19,11 +32,22 @@ var Ennemy = function(params)
 
     this.update = function()
     {
-        this.comport();
+		if(this.spawned == true)
+		{
+			this.comport();
 
-        this.majPos();
+			this.majPos();
 
-        this.render();
+			this.render();
+		}
+		if(this.spawned == false)
+		{
+			this.spawnTimer --;
+			if(this.spawnTimer <= 0)
+			{
+				this.spawned = true;
+			}
+		}
     }
 
     this.render = function()
