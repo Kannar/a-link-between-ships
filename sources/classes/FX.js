@@ -50,6 +50,7 @@ var Particle = function(parent,direction,speed,alpha)
 	this.size = particleData[this.type].size;
 	this.alpha = alpha;
 	this.lifetime = particleData[this.type].lifetime;
+	this.alphaLoose = particleData[this.type].alphaLoose;
 	
 	this.draw = function()
 	{
@@ -71,7 +72,7 @@ var Particle = function(parent,direction,speed,alpha)
 			this.draw();
 			
 			
-			this.alpha -= 0.05;
+			this.alpha -= this.alphaLoose;
 			this.lifetime--;
 		}
 		
