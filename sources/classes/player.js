@@ -11,8 +11,8 @@ var Player = function(params)
     this.id       = params.id || "player"+(Math.random()*255>>0);
     
     //Mouvement
-    this.speedAcc = params.speedAcc || 0.1;
-    this.speedMax = params.speedMax || 2;
+    this.speedAcc = params.speedAcc || 0.5;
+    this.speedMax = params.speedMax || 5;
     this.speedSlo = params.speedSlo || 0.1;
     this.vx       = 0;
     this.vy       = 0;
@@ -31,7 +31,11 @@ var Player = function(params)
 
         if(this.pad)
             this.moveWithPad();
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> origin/master
         this.render();
     }
 
@@ -49,16 +53,36 @@ var Player = function(params)
     {
         var _onMove = false;
 
-        if(this.pad.axes[0] < -0.25 || this.pad.axes[0] > 0.25)   //Axe horizontal
+        if(this.pad.axes[0] < -0.25)   //Axe horizontal
         {
-            this.accelerate({x: this.pad.axes[0], y: 0});
+            this.accelerateX(this.pad.axes[0]);
+
+            console.log("left");
+
+            _onMove = true;
+        }
+        if(this.pad.axes[0] > 0.25)   //Axe horizontal
+        {
+            this.accelerateX(this.pad.axes[0]);
+
+            console.log("right");
 
             _onMove = true;
         }
 
-        if(this.pad.axes[1] < -0.25 || this.pad.axes[1] > 0.25)
+        if(this.pad.axes[1] > 0.25)
         {
-            this.accelerate({x: 0, y: this.pad.axes[1]});
+            this.accelerateY(this.pad.axes[1]);
+
+            console.log("bot");
+
+            _onMove = true;
+        }
+        if(this.pad.axes[1] < -0.25)
+        {
+            this.accelerateY(this.pad.axes[1]);
+
+            console.log("top");
 
             _onMove = true;
         }
@@ -75,12 +99,18 @@ var Player = function(params)
     }
 
     //Acceleration
-    this.accelerate = function(coeff)  //Coeff -> {x,y} valeure entre 0 et 1
+    this.accelerateX = function(coeffX)  //CoeffX -> valeur entre 0 et 1
     {
-        if(Math.abs(this.vx) < this.speedMax && Math.abs(this.vy) < this.speedMax)
+        if(Math.abs(this.vx) < this.speedMax)
         {
-            this.vx = this.vx + (this.speedAcc*coeff.x);
-            this.vy = this.vy + (this.speedAcc*coeff.y);
+            this.vx = this.vx + (this.speedAcc*coeffX);
+        }
+    }
+    this.accelerateY = function(coeffY)  //CoeffY -> valeur entre 0 et 1
+    {
+        if(Math.abs(this.vy) < this.speedMax)
+        {
+            this.vy = this.vy + (this.speedAcc*coeffY);
         }
     }
 

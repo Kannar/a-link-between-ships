@@ -42,6 +42,16 @@ function gameloop()
             };
         }
     }
+	
+	for(i=0; i < explosionTable.length; i++)
+	{
+		explosionTable[i].update();
+		if(explosionTable[i].particlesTable.length == 0)
+		{
+			explosionTable.splice(i,1);
+		}
+	}
+
 /******************************/
     stats.end();
 }
