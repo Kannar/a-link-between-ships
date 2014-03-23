@@ -6,8 +6,6 @@ var gameobjects = [
     [], //Ennemies
     [], //Annemies Bullets
     []  //Neutre
-	
-
 ];
 
 var gamepadManager;

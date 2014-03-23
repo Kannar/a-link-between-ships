@@ -1,5 +1,5 @@
 var bulletPlayers_data = {
     width: 10,
     height: 10,
-    speed: 3
+    speed: 7
 };
