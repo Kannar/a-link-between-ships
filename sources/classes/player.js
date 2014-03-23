@@ -15,7 +15,7 @@ var Player = function(params)
             this.onMoveTop=false;
     //Mouvement
     this.speedAcc = params.speedAcc || 2;
-    this.speedMax = params.speedMax || 10;
+    this.speedMax = params.speedMax || 7;
     this.speedSlo = params.speedSlo || 0.3;
     this.vx       = 0;
     this.vy       = 0;
@@ -25,14 +25,14 @@ var Player = function(params)
     this.shootSpeed = params.shootSpeed || 1;
     this.framesSinceLastShoot = 60;
     this.shootDisable=false;
-
+    this.disableMoove=false;
     //Gamepad
     this.pad;
 
     this.update = function()
     {
         this.majPos();
-        if(this.pad)
+        if(this.pad && !this.disableMoove)
             this.moveWithPad();
         this.render();
         this.framesSinceLastShoot = this.framesSinceLastShoot + 1;
@@ -75,7 +75,6 @@ var Player = function(params)
         }
         if(this.pad.axes[1] < -0.25)
         {
-            onMove = true;
             this.onMoveBot=false;
             this.onMoveTop=true;
         }
@@ -123,7 +122,6 @@ var Player = function(params)
         {
             this.vy = this.vy + (this.speedAcc*coeffY);
         }
-        console.log(coeffY);
     }
 
     //Deceleration
@@ -146,7 +144,7 @@ var Player = function(params)
         //En X
         if(this.vx < -0.5 || this.vx > 0.5)
         {
-            this.vx = this.vx + (_coeff.x*this.speedSlo);
+            this.vx = this.vx + (_coeff.x*this.speedSlo*2);
 
         }
         else if((this.vx <0.25 && this.vx > 0)||(this.vx >-0.25 && this.vx <0))
@@ -159,7 +157,7 @@ var Player = function(params)
         //En Y
         if(this.vy < -0.5 || this.vy > 0.5)
         {
-            this.vy = this.vy + (_coeff.y*this.speedSlo);
+            this.vy = this.vy + (_coeff.y*this.speedSlo*4);
 
         }
         else if((this.vy<0.25 && this.vy>0)||(this.vy>-0.25 && this.vy<0))
@@ -168,8 +166,8 @@ var Player = function(params)
             this.vy=0;
              this.onMoveBot=false;
             this.onMoveTop=false;
+        console.log("vitesse Y :"+this.vy)
         }
-        // console.log("vitesse Y :"+_coeff.y*this.speedSlo)
        // console.log("vitesse X : "+this.vx)
     }
     /*******************************/
@@ -191,5 +189,29 @@ var Player = function(params)
 
             this.framesSinceLastShoot = 0;
         }
+    }
+    this.death = function()
+    {
+
+        var explosion = new Explosion(this.x+this.width/2,this.y+this.height/2, 0);
+        explosionTable.push(explosion);
+        var link = gameobjects[0][2];
+        link.life--;
+         this.vy=0;
+         this.vx=0;
+        window.setTimeout(this.respawn,1000);
+        if(link.player1.id!=this.id){
+            this.x=link.player1.x;
+            this.y=link.player1.y;
+        }
+        else{
+            this.x=link.player2.x;
+            this.y=link.player2.y;
+        }
+        this.disableMoove=true;
+        var _this=this;
+        window.setTimeout(function(){
+            _this.disableMoove=false;
+        },1000);
     }
 }

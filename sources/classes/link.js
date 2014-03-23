@@ -19,6 +19,7 @@ Link.prototype.render = function(){
 Link.prototype.update = function(){
 	this.checkDistance()
 	this.render();
+	this.death();
 }
 Link.prototype.checkDistance = function()
 {
@@ -64,4 +65,9 @@ Link.prototype.manager = function (carac,coef){
 }
 Link.prototype.warning = function(){
 	console.log("startCountdown");
+}
+Link.prototype.death = function(){
+	if(this.life==0){
+		alert("GameOver");
+	}
 }
