@@ -10,7 +10,7 @@ function m_sqr(x)
 //Calcul de la distance entre 2 points A et B, implique que A et B soit des objets ayant des propriété x et y
 function m_dist(a, b)
 {
-    return Math.sqrt(m_sqr(b.x - a.x) + m_sqr(b.y - b.y));
+    return Math.sqrt(m_sqr(b.x - a.x) + m_sqr(b.y - a.y));
 }
 
 //Calcul d'un angle en radian entre 2 points A et B
@@ -55,7 +55,7 @@ function m_addVec(vA, vB) //objets x, y (ex: {x: 2, y: 1})
 }
 
 //Retourne le module d'un vecteur
-function m_modVec(v)    //objet {x, y}
+function m_modVec(v)    //objet x, y
 {
     return Math.sqrt(v.x*v.x + v.y*v.y);
 }
