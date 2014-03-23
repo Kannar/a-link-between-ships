@@ -27,6 +27,8 @@ function mainInit()
 	var gamepadManager = new GamepadManager();
     gameobjects[0].push(player1,player2,link);
     instantiateMap();
+	var explosion1 = new Explosion(500, 400, 0);
+	explosionTable.push(explosion1);
     mainloop();
 }
 
