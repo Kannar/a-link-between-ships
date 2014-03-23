@@ -30,9 +30,9 @@ var Player = function(params)
         this.majPos();
 
       //  this.pad.update();
+           //  this.padMove();
+             //this.padMove();
 
-	//	this.padMove();
-		//this.padMove();
         // this.pad.update();
 
 
