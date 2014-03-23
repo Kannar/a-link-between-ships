@@ -51,6 +51,33 @@ function gameloop()
 			explosionTable.splice(i,1);
 		}
 	}
+	console.log(understate);
+	if(understate == "IN_WAVE")
+	{
+		if(gameobjects[2].length == 0)
+		{
+			understate = "WAVE_SWITCH";
+			wave+=1;
+			waveCountdown = 200;
+		
+		}
+	}
+	if(understate == "WAVE_SWITCH")
+	{
+		waveCountdown -=1;
+		
+	mainContext.fillStyle = "rgba(255,255,255,0.8)";
+	mainContext.font = "Bold 80px Akachi";
+	var text = "WAVE  "+wave;
+	var dim = mainContext.measureText(text);
+	mainContext.fillText(text, mainCanvas.width / 3, mainCanvas.height / 2 - 150);		
+		
+		if(waveCountdown <= 0)
+		{
+			generateWave(wave);
+			understate = "IN_WAVE";
+		}
+	}
 
 /******************************/
     stats.end();

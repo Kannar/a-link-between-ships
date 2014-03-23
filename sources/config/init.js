@@ -29,7 +29,7 @@ function mainInit()
     instantiateMap();
 	var explosion1 = new Explosion(500, 400, 0);
 	explosionTable.push(explosion1);
-	generateWave(15);
+	
     mainloop();
 }
 

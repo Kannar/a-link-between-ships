@@ -1,5 +1,5 @@
 var state = "IN_GAME";
-
+var understate = "WAVE_SWITCH";
 var gameobjects = [
     [], //Allies
     [], //Allies Bullets

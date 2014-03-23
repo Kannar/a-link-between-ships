@@ -1,4 +1,7 @@
 var registeredEnemyNumber = 5;
+var wave = 1;
+var waveCountdown = 200;
+
 
 
 function generateWave(waveNumber){
