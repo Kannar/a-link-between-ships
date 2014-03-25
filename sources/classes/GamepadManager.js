@@ -1,6 +1,6 @@
 var GamepadManager = function()
 {
-	this.maxPlayers = 2;
+	this.maxPlayers = 1;
 	this.connectedGamepads = 0;
 	this.registeredGamepads = 0;
 	

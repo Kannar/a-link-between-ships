@@ -36,7 +36,7 @@ var Player = function(params)
         if(this.pad && !this.disableMoove)
         {
             this.moveWithPad();
-            this.shootWithPad();
+            this.shootWithPadBis();
         }
 
         this.keepInCanvas(1);
@@ -182,6 +182,7 @@ var Player = function(params)
     /********************************
     *   Shoot
     ********************************/
+    //Version "vecteur"
     this.shoot = function(coeff)
     {   
 
@@ -228,6 +229,45 @@ var Player = function(params)
         {
             this.shoot(_coeff);
         }
+    }
+
+    //Version calcul d'angle
+    this.shootBis = function(angle)
+    {
+        var _params = bulletPlayers_data;
+        _params.x = this.x + this.width/2 - bulletPlayers_data.width/2;
+        _params.y = this.y + this.height/2 - bulletPlayers_data.height/2;
+        _params.angle = angle;
+
+        gameobjects[1].push(new Bullet(_params));
+    }
+
+    this.shootWithPadBis = function()
+    {
+        var _joystickValue = {x: 0, y: 0};
+
+        if(this.pad.axes[2] < -0.25)    //Horizontal (gauche)
+        {
+            _joystickValue.x = this.pad.axes[2];
+        }
+        else if(this.pad.axes[2] > 0.25)    //Horizontal (droite)
+        {
+            _joystickValue.x = this.pad.axes[2];
+        }
+
+        if(this.pad.axes[3] < -0.25)    //Vertical (droite)
+        {
+            _joystickValue.y = this.pad.axes[3];
+        }
+        else if(this.pad.axes[3] > 0.25)    //Vertical (gauche)
+        {
+            _joystickValue.y = this.pad.axes[3];
+        }
+
+        var _angleShoot = Math.atan2(_joystickValue.x, _joystickValue.y);
+
+        if(_angleShoot != 0)
+            this.shootBis(_angleShoot);
     }
 
     /*********************************

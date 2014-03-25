@@ -7,8 +7,10 @@ var Bullet = function(params)
     this.id     = gameobjects[1].length;
     this.vx     = params.vx;
     this.vy     = params.vy;
-
-    this.speed = params.speed || bulletPlayers_data.speed;
+    
+    this.angle  = params.angle;
+    
+    this.speed  = params.speed || bulletPlayers_data.speed;
 
     this.toDestroy = false;
 
@@ -27,8 +29,11 @@ var Bullet = function(params)
 
     this.majPos = function()
     {
-        this.x = this.x + this.vx;
-            this.y = this.y + this.vy;
+        // this.x = this.x + this.vx;
+        // this.y = this.y + this.vy;
+
+        this.x = this.x + Math.cos(this.angle) * this.speed;
+        this.y = this.y + Math.sin(this.angle) * this.speed;
     }
 
     this.checkDead = function()
