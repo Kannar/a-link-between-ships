@@ -66,7 +66,7 @@ function gameloop()
 	}
 	if(understate == "WAVE_SWITCH")
 	{
-		waveCountdown -=1;
+		//waveCountdown -=1;
 		
 	mainContext.fillStyle = "rgba(255,255,255,0.8)";
 	mainContext.font = "Bold 80px Akachi";
@@ -99,7 +99,9 @@ function gameloop()
 ****************************/
 function pauseloop()
 {
-
+    mainContext.fillStyle = "rgba(255,255,255,0.8)";
+    mainContext.font = "Bold 80px Akachi";
+    mainContext.fillText("PAUSE", mainCanvas.width / 3, mainCanvas.height / 2 - 150);
 }
 
 /****************************

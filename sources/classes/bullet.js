@@ -33,7 +33,7 @@ var Bullet = function(params)
         // this.y = this.y + this.vy;
 
         this.x = this.x + Math.cos(this.angle) * this.speed;
-        this.y = this.y + Math.sin(this.angle) * this.speed;
+        this.y = this.y - Math.sin(this.angle) * this.speed;
     }
 
     this.checkDead = function()

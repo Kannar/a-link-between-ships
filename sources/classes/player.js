@@ -4,30 +4,32 @@
 var Player = function(params)
 {
     //Basique
-    this.x        = params.x ||0;
-    this.y        = params.y || 0;
-    this.width    = params.width || 40;
-    this.height   = params.height || 68;
-    this.id       = params.id || "player"+(Math.random()*255>>0);
-                this.onMoveLeft=false;
-            this.onMoveRight=false;
-            this.onMoveBot=false;
-            this.onMoveTop=false;
+    this.x                    = params.x ||0;
+    this.y                    = params.y || 0;
+    this.width                = params.width || 40;
+    this.height               = params.height || 68;
+    this.id                   = params.id || "player"+(Math.random()*255>>0);
+    this.onMoveLeft           =false;
+    this.onMoveRight          =false;
+    this.onMoveBot            =false;
+    this.onMoveTop            =false;
+    this.currentAngle         = 0;  //Servant à l'orientation du skin du vaisseau
     //Mouvement
-    this.speedAcc = params.speedAcc || 2;
-    this.speedMax = params.speedMax || 7;
-    this.speedSlo = params.speedSlo || 0.3;
-    this.vx       = 0;
-    this.vy       = 0;
-    this.img      = new Image();
-    this.img.src  = params.src;
+    this.speedAcc             = params.speedAcc || 2;
+    this.speedMax             = params.speedMax || 7;
+    this.speedSlo             = params.speedSlo || 0.3;
+    this.vx                   = 0;
+    this.vy                   = 0;
+    this.img                  = new Image();
+    this.img.src              = params.src;
     //Shoot
-    this.shootSpeed = params.shootSpeed || 0.4;
+    this.shootSpeed           = params.shootSpeed || 0.4;
     this.framesSinceLastShoot = 60;
-    this.shootDisable=false;
-    this.disableMoove=false;
+    this.shootDisable         =false;
+    this.disableMoove         =false;
     //Gamepad
     this.pad;
+    this.buttonOnce           = false;
 
     this.update = function()
     {
@@ -37,24 +39,36 @@ var Player = function(params)
         {
             this.moveWithPad();
             this.shootWithPadBis();
+
+            if(this.pad.buttons[9] == 1 && !this.buttonOnce)
+            {
+                this.pause();
+            }
+
+            this.checkButtonActived();
         }
 
         this.keepInCanvas(1);
-
         this.render();
         this.framesSinceLastShoot = this.framesSinceLastShoot + 1;
     }
 
     this.render = function()
     {
+        // mainContext.save();
+        // mainContext.translate((this.x +this.width/2), (this.y+this.height/2));
+        // mainContext.rotate(-this.currentAngle);
+
         mainContext.fillStyle = "rgb(25, 255, 25)";
         mainContext.drawImage(this.img,this.x, this.y, this.width, this.height);
+        
+        // mainContext.restore();
     }
 
     /********************************
     *   Mouvement
     ********************************/
-    //Bouger grace au pad
+    //Bouger grâce au pad
      this.moveWithPad = function()
     {
         var _onMove = false;
@@ -234,12 +248,17 @@ var Player = function(params)
     //Version calcul d'angle
     this.shootBis = function(angle)
     {
-        var _params = bulletPlayers_data;
-        _params.x = this.x + this.width/2 - bulletPlayers_data.width/2;
-        _params.y = this.y + this.height/2 - bulletPlayers_data.height/2;
-        _params.angle = angle;
+        if(this.framesSinceLastShoot/60 >= this.shootSpeed && !this.shootDisable)
+        {
+            var _params = bulletPlayers_data;
+            _params.x = this.x + this.width/2 - bulletPlayers_data.width/2;
+            _params.y = this.y + this.height/2 - bulletPlayers_data.height/2;
+            _params.angle = angle;
 
-        gameobjects[1].push(new Bullet(_params));
+            gameobjects[1].push(new Bullet(_params));
+
+            this.framesSinceLastShoot = 0;
+        }
     }
 
     this.shootWithPadBis = function()
@@ -266,8 +285,14 @@ var Player = function(params)
 
         var _angleShoot = Math.atan2(_joystickValue.x, _joystickValue.y);
 
-        if(_angleShoot != 0)
+        if(_joystickValue.x != 0 || _joystickValue.y != 0)
+        {
+            _angleShoot = Math.atan2(_joystickValue.x, _joystickValue.y) - Math.PI/2;
+
             this.shootBis(_angleShoot);
+
+            this.currentAngle = _angleShoot + (4*Math.PI)/5;    //Angle pour rotation  vaisseau (pété)
+        }
     }
 
     /*********************************
@@ -307,13 +332,46 @@ var Player = function(params)
             return;
         }
     }
+    /*********************************
+    *   Gestion de la manette (sale en attendant de refaire le manette manager)
+    *********************************/
+    this.checkButtonActived = function()    //Pour gérer la pause pour le moment
+    {
+        this.buttonOnce = false;
+
+        for(var i=0; i<this.pad.buttons.length; i++)
+        {
+            if(this.pad.buttons[i] == 1)
+            {
+                this.buttonOnce = true;
+
+                return;
+            }
+        }
+    }
+
+    /*********************************
+    *   System
+    *********************************/
+    this.pause = function() //Principalement pour le débug, le temps d'avoir un objet manette plus complet
+    {
+        if(state == "IN_GAME")
+        {
+            state = "PAUSE";
+        }
+        else if(state == "PAUSE")
+        {
+            state = "IN_GAME";
+        }
+
+        this.buttonOnce = true;
+    }
 
     /*********************************
     *   Mort
     *********************************/
     this.death = function()
     {
-
         var explosion = new Explosion(this.x+this.width/2,this.y+this.height/2, 0);
         explosionTable.push(explosion);
         var link = gameobjects[0][2];
