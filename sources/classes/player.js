@@ -39,6 +39,8 @@ var Player = function(params)
             this.shootWithPad();
         }
 
+        this.keepInCanvas(1);
+
         this.render();
         this.framesSinceLastShoot = this.framesSinceLastShoot + 1;
     }
@@ -227,6 +229,48 @@ var Player = function(params)
             this.shoot(_coeff);
         }
     }
+
+    /*********************************
+    *   Limites canvas
+    *********************************/
+    this.keepInCanvas = function(repulse)
+    {
+        //Left
+        if(this.x <= (-this.width/2))
+        {
+            this.vx = repulse;
+
+            return;
+        }
+
+        //Right
+        if(this.x >= mainCanvas.width - this.width/2)
+        {
+            this.vx = (-repulse);
+
+            return;
+        }
+
+        //Top
+        if(this.y <= (-this.height/2))
+        {
+            this.vy = repulse;
+
+            return;
+        }
+
+        //Bot
+        if(this.y >= mainCanvas.height - this.height/2)
+        {
+            this.vy = (-repulse);
+
+            return;
+        }
+    }
+
+    /*********************************
+    *   Mort
+    *********************************/
     this.death = function()
     {
 
